@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mi_cadena_app/models/user/user_http.dart';
-import 'package:mi_cadena_app/services/http_request.dart';
-import 'package:mi_cadena_app/widgets/my_alert_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -25,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 onChanged: (value) => _email = value,
                 decoration: const InputDecoration(
                   labelText: 'Correo Electrónico',

@@ -1,7 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mi_cadena_app/widgets/my_alert_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void initState() {
+    _checkVerifyEmail();
+    super.initState();
+  }
+
+  _checkVerifyEmail() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? userInfo = prefs.getStringList('userInfo');
+
+    if (userInfo![3] == 'n') {
+      print(userInfo);
+      MyAlertDialog(
+          title: 'Advertencia',
+          widgetMessage: Text('Debe verificar su email'),
+          actions: () => {context.goNamed('verify_email')});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
