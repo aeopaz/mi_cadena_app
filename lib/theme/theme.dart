@@ -42,26 +42,26 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
   ),
-  // textTheme: const TextTheme(
-  //   headline1: TextStyle(
-  //     color: Color(0xFF202124),
-  //     fontSize: 32,
-  //     fontWeight: FontWeight.bold,
-  //   ),
-  //   headline6: TextStyle(
-  //     color: Color(0xFF202124),
-  //     fontSize: 20,
-  //     fontWeight: FontWeight.bold,
-  //   ),
-  //   bodyText1: TextStyle(
-  //     color: Color(0xFF5F6368),
-  //     fontSize: 16,
-  //   ),
-  //   bodyText2: TextStyle(
-  //     color: Color(0xFF5F6368),
-  //     fontSize: 14,
-  //   ),
-  // ),
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+      color: Color(0xFF202124),
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+    ),
+    titleLarge: TextStyle(
+      color: Color(0xFF202124),
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),
+    bodyLarge: TextStyle(
+      color: Color(0xFF5F6368),
+      fontSize: 16,
+    ),
+    bodyMedium: TextStyle(
+      color: Color(0xFF5F6368),
+      fontSize: 14,
+    ),
+  ),
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),

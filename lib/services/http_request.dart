@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:go_router/go_router.dart';
 import 'package:mi_cadena_app/utilities/constans.dart';
 import 'package:mi_cadena_app/widgets/my_alert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,7 +35,6 @@ class HttpRequest {
         await http.get(Uri.parse(kServer + url), headers: headers);
     if (response.statusCode <= 204) {
       String data = response.body;
-      showServerResponse(response);
       return jsonDecode(data);
     } else {
       showServerResponse(response);
@@ -57,7 +57,6 @@ class HttpRequest {
   getHeaders() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dynamic token = prefs.getString('token');
-    print("token ${token}");
 
     Map<String, String> headers = {
       'Authorization': 'Bearer $token',
@@ -94,8 +93,15 @@ class HttpRequest {
             actions: [
               TextButton(
                 child: Text('Cerrar'),
-                onPressed: () {
-                  Navigator.of(context).pop();
+                onPressed: () async {
+                  if (statusCode == 401) {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.remove('token');
+                    context.goNamed('login');
+                  } else {
+                    Navigator.of(context).pop();
+                  }
                 },
               ),
             ],
